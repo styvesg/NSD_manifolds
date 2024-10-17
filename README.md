@@ -28,9 +28,11 @@ The main purpose of this collection of notebooks is to show the analysis that re
 # Data requirements
 
 Data: [http://naturalscenesdataset.org/](http://naturalscenesdataset.org/)
+
 Paper: [A massive 7T fMRI dataset to bridge cognitive neuroscience and artificial intelligence](https://www.nature.com/articles/s41593-021-00962-x)
 
-Model:  [](https://github.com/styvesg/nsd_gnet8x)
+Model:  [https://github.com/styvesg/nsd_gnet8x](https://github.com/styvesg/nsd_gnet8x)
+
 Paper: [Brain-optimized neural networks learn non-hierarchical models of representation in human visual cortex](https://www.nature.com/articles/s41467-023-38674-4)
 
 
