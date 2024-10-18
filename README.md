@@ -32,6 +32,7 @@ Data: [http://naturalscenesdataset.org/](http://naturalscenesdataset.org/) /
 
 Model and training:  [https://github.com/styvesg/nsd_gnet8x](https://github.com/styvesg/nsd_gnet8x) / 
  [Brain-optimized neural networks learn non-hierarchical models of representation in human visual cortex](https://www.nature.com/articles/s41467-023-38674-4)
+ 
 This repo includes the trained parameters for a GNet8j model (a GNet joint model of NSD's 8 subjects) over a larger set of voxels than those used in the paper above. This voxel population covers most of the ROI labelled voxel under the Kastner altas of NSD.
 
 # System requirements
