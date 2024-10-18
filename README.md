@@ -18,7 +18,7 @@ The main purpose of this collection of notebooks is to show the analysis that re
 |------|-------------|
 |`data_preparation.ipynb`| Some preprocessing of the NSD images and object segmentation maps for convenience. |
 |`gnet8j_predict_imagenet.ipynb`| NSD subjects predictions for the ImageNet images. |
-|`???`| Characterization of the predicted ImageNet manifold high-dimensional geometry. |
+|`gnet8j_imagenet_manifold_rc.ipynb`| Characterization of high-dimensional geometry for the predicted ImageNet concepts. |
 |`data_supercategory_image_structure_rc.ipynb`| Characterization of high-dimensional geometry of concept manifold for the NSD data (Fig. 2).|
 |`gnet8j_supercategory_manifold_rc.ipynb`| Characterization of the high-dimensional geometry of concept manifold for the GNet. |
 |`network_supercategory_manifold_rc.ipynb`| Characterization of the high-dimensional geometry of concept manifold for internal representation of DNNs. |
