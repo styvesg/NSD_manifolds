@@ -30,9 +30,9 @@ The main purpose of this collection of notebooks is to show the analysis that re
 Data: [http://naturalscenesdataset.org/](http://naturalscenesdataset.org/) / 
  [A massive 7T fMRI dataset to bridge cognitive neuroscience and artificial intelligence](https://www.nature.com/articles/s41593-021-00962-x)
 
-Model:  [https://github.com/styvesg/nsd_gnet8x](https://github.com/styvesg/nsd_gnet8x) / 
+Model and training:  [https://github.com/styvesg/nsd_gnet8x](https://github.com/styvesg/nsd_gnet8x) / 
  [Brain-optimized neural networks learn non-hierarchical models of representation in human visual cortex](https://www.nature.com/articles/s41467-023-38674-4)
-
+This repo includes the trained parameters for a GNet8j model (a GNet joint model of NSD's 8 subjects) over a larger set of voxels than those used in the paper above. This voxel population covers most of the ROI labelled voxel under the Kastner altas of NSD.
 
 # System requirements
 ## Software Requirements
