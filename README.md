@@ -5,8 +5,9 @@
 ## Contents
 
 - [Overview](#overview)
-- [Repo Contents](#repo-contents)
-- [System Requirements](#system-requirements)
+- [Repo contents](#repo-contents)
+- [Data requirements](#data-requirements)
+- [System requirements](#system-requirements)
 
 # Overview
 
