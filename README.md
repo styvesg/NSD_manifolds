@@ -36,7 +36,6 @@ Model and training:  [https://github.com/styvesg/nsd_gnet8x](https://github.com/
 This repo includes the trained parameters for a GNet8j model (a GNet joint model of NSD's 8 subjects) over a larger set of voxels than those used in the paper above. This voxel population covers most of the ROI labelled voxel under the Kastner altas of NSD.
 
 # System requirements
-## Software Requirements
 
 The exact minimal requirement are not known exactly. However, the implementation uses mostly standard routines and very few dependencies, therefore old versions may still perform adequately. The numerical latest experiments and analysis has been performed with the following software versions:
 
