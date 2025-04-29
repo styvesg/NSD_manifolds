@@ -38,7 +38,7 @@ This repo includes the trained parameters for a GNet8j model (a GNet joint model
 
 # System requirements
 
-The exact minimal requirement are not known exactly. However, the implementation uses mostly standard routines and very few dependencies, therefore old versions may still perform adequately. The numerical latest experiments and analysis has been performed with the following software versions:
+The exact minimal requirement are not known exactly. However, the implementation uses mostly standard routines and very few dependencies, therefore old versions may still perform adequately. The numerical experiments and analysis has been performed with the following software versions:
 
 - python 3.6.8
 - numpy 1.19.5
