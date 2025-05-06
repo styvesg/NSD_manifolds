@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+from tqdm import tqdm
 
 from nsd_gnet8x.src.file_utility import zip_dict
 from nsd_manifold.src.geometry import gs
@@ -93,3 +94,67 @@ def extract_sampled_features(_fmaps_fn, image_loader, sampler, batchsize=100, de
     pred_id = np.concatenate(pred_id, axis=0)
     sfeats  = [np.concatenate(a) for a in zip(*sfeats)]
     return pred_id, sfeats
+
+    
+def extract_fmaps_embedding(net, _fmaps_fn, stim_data, label_data, batchsize, n_samples, rand_sampling_dim, rand_proj_dim, zscore=True, shuffle_params=False, device='cuda:0'):
+    '''
+    # example usage:
+    model_name = 'squeezeNet-rc'
+feature_embs, labels = \
+    extract_fmaps_embedding(net, _fmap_fn, stim_data, things_mh, batchsize=100, n_samples=9, rand_sampling_dim=20000, rand_proj_dim=2000, zscore=True, device=device)
+    '''
+    from nsd_manifold.src.geometry import k_rand_label_index, geometry, PCA_geometry, prD
+    
+    subjects = list(stim_data.keys())
+    rs = subjects[np.random.randint(len(subjects))]
+    _x = torch.tensor(stim_data[rs][:batchsize]).to(device) # the input variable.
+    _fmaps = _fmaps_fn(_x) 
+                            
+    feature_embs, labels = {}, {}
+    for s in tqdm(np.arange(n_samples)):
+        ##
+        if shuffle_params:
+            for _p in net.parameters():
+                p = get_value(_p).flatten()
+                np.random.shuffle(p)
+                set_value(_p, p.reshape(_p.size()))
+            net.eval()
+        ##
+        keep_idxes = [] # random sampling outside the sampler to reduce memory usage for the extracted feature maps
+        rs = subjects[np.random.randint(len(subjects))] # random set of images, if more than one
+        for k,_fm in enumerate(_fmaps):
+            nf =  np.prod(_fm.size()[1:])
+            idx = np.arange(nf)
+            np.random.shuffle(idx)
+            if nf<rand_sampling_dim:
+                keep_idxes += [idx,]
+                if s==0:
+                    print (_fm.size()[1:], '-->', nf)
+            else:
+                keep_idxes += [idx[:rand_sampling_dim],]  
+                if s==0:
+                    print (_fm.size()[1:], '-->', nf, '-->', rand_sampling_dim)
+        ##
+        feature_maps = {}
+        for k,(idx, _fm) in enumerate(zip(keep_idxes, _fmaps)):       
+            feature_maps[k] = np.zeros(shape=(len(stim_data[rs]), len(idx)), dtype=np.float32)
+        for rr, rl in iterate_range(0, len(stim_data[rs]), batchsize):
+            _x = torch.tensor(stim_data[rs][rr]).to(device) # the input variable.
+            _fmaps = _fmaps_fn(_x)
+            for k,(idx,_fm) in enumerate(zip(keep_idxes, _fmaps)):
+                _fm = torch.flatten(_fm, start_dim=1)[:,idx]
+                feature_maps[k][rr] = get_value(_fm)
+        ##  zscore      
+        for k,fm in feature_maps.items():
+            ffm = fm.reshape((fm.shape[0], -1))
+            if zscore:
+                feature_maps[k] = ffm - np.mean(ffm, axis=0, keepdims=True)
+                feature_maps[k] /= np.std(ffm, axis=0, keepdims=True) + 1e-6
+            else:
+                feature_maps[k] = ffm
+        ##
+        sampler = Subsampler(random_projections=rand_proj_dim)
+        feature_embs[s] = sampler.apply(feature_maps)    
+        labels[s] = label_data[rs]
+    return feature_embs, labels 
+    
