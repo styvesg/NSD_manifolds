@@ -44,3 +44,11 @@ The exact minimal requirement are not known exactly. However, the implementation
 - numpy 1.19.5
 - scipy 1.5.4
 - torch 1.10 with CUDA 11.3 and cudnn 8.2
+
+# Figure with NSD-derived images 
+
+### Figure 2: Illustration of two concept manifolds for brain regions of interest across human visual cortex
+<img src="images/Figure_2_visual_representation_data_rev2.png" title="Figure 2 alternate" alt="Figure 2 alternate" width="100%" height="100%" align="top"> 
+
+### Figure S2: The list of the constituent objects COCO categories for each supercategory.
+<img src="images/SupplFig_supercategories.png" title="Figure S2 alternate" alt="Figure S2 alternate" width="100%" height="100%" align="top">
